@@ -5,46 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>マグロのトロ：至高の寿司ネタ</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap');
+        
         body {
-            font-family: 'Noto Sans JP', sans-serif;
+            font-family: 'Noto Serif JP', serif;
             background-color: #000;
-            color: #fff;
+            color: #f0f0f0;
             line-height: 1.6;
             margin: 0;
             padding: 0;
         }
         .container {
-            max-width: 1200px;
+            max-width: 100%;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0;
+            overflow-x: hidden;
         }
         header {
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23000"/><path d="M0 0L100 100M100 0L0 100" stroke="%23333" stroke-width="2"/></svg>') repeat;
+            background: linear-gradient(45deg, #1a0000, #400000);
+            color: #f0f0f0;
             padding: 20px 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.03) 10px,
+                rgba(255,255,255,0.03) 20px
+            );
+            z-index: 1;
         }
         h1 {
-            font-family: 'Shippori Mincho', serif;
-            color: #ff3b3b;
             font-size: 2.5em;
             margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 2;
+        }
+        nav {
+            position: relative;
+            z-index: 2;
         }
         nav ul {
             list-style-type: none;
             padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         nav ul li {
-            display: inline;
-            margin: 0 10px;
+            margin: 5px 10px;
         }
         nav ul li a {
-            color: #fff;
+            color: #f0f0f0;
             text-decoration: none;
-            font-size: 1.1em;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ff4500;
         }
         .hero {
             position: relative;
-            height: 60vh;
+            height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -55,7 +88,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.8;
+            object-position: center;
+            opacity: 0.9;
         }
         .hero-content {
             position: absolute;
@@ -64,50 +98,111 @@
             background-color: rgba(0, 0, 0, 0.7);
             padding: 20px;
             border-radius: 10px;
+            color: #f0f0f0;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 600px;
         }
         .hero h2 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            color: #ff3b3b;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            color: #ff4500;
         }
-        main {
-            display: flex;
-            margin-top: 20px;
-        }
-        .content {
-            flex: 3;
-            background-color: rgba(51, 51, 51, 0.8);
-            padding: 20px;
+        section {
+            background-color: rgba(20, 20, 20, 0.9);
+            margin: 20px;
+            padding: 30px;
             border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
         }
-        .sidebar {
-            flex: 1;
-            background-color: rgba(51, 51, 51, 0.8);
-            padding: 20px;
-            margin-left: 20px;
-            border-radius: 5px;
+        section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.02) 10px,
+                rgba(255,255,255,0.02) 20px
+            );
+            z-index: 1;
+        }
+        section > * {
+            position: relative;
+            z-index: 2;
         }
         h2 {
-            color: #ff3b3b;
-            border-bottom: 2px solid #ff3b3b;
+            color: #ff4500;
+            border-bottom: 2px solid #ff4500;
             padding-bottom: 10px;
-        }
-        footer {
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 20px;
-            background-color: #111;
+            position: relative;
         }
         .feature-list {
             list-style-type: none;
             padding-left: 0;
         }
-        .feature-list li:before {
+        .feature-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        .feature-list li::before {
             content: "•";
-            color: #ff3b3b;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: #ff4500;
+        }
+        .image-container {
+            margin: 20px 0;
+            text-align: center;
+            position: relative;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #0a0a0a;
+            color: #f0f0f0;
+            position: relative;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.02) 10px,
+                rgba(255,255,255,0.02) 20px
+            );
+            z-index: 1;
+        }
+        footer > * {
+            position: relative;
+            z-index: 2;
+        }
+        @media (min-width: 768px) {
+            .container {
+                max-width: 750px;
+            }
         }
     </style>
 </head>
@@ -118,66 +213,87 @@
             <nav>
                 <ul>
                     <li><a href="#intro">トロの魅力</a></li>
-                    <li><a href="#features">トロの特徴</a></li>
-                    <li><a href="#rarity">希少性</a></li>
-                    <li><a href="#seasons">季節とトロ</a></li>
-                    <li><a href="#variety">トロの多様性</a></li>
+                    <li><a href="#features">特徴</a></li>
+                    <li><a href="#experience">食べた人の感想</a></li>
+                    <li><a href="#fishing-ports">有名な漁港</a></li>
+                    <li><a href="#issues">資源問題</a></li>
+                    <li><a href="#trend">トレンド</a></li>
                 </ul>
             </nav>
         </header>
         
         <div class="hero">
-            <img src="https://www.date-wasabi.com/wp-content/uploads/2015/08/HonMaguro-Otoro.jpg" alt="マグロの大トロの寿司" class="hero-image">
+            <img src="https://bc5jtn9gd6.user-space.cdn.idcfcloud.net/img/product/999694332/748x552.jpg?ver=1717995111449" alt="マグロのトロの寿司" class="hero-image">
             <div class="hero-content">
                 <h2>極上のトロ、極上の体験</h2>
-                <p>口の中でとろける至高の味わいをご堪能ください</p>
+                <p>口の中でとろける至高の味わい</p>
             </div>
         </div>
 
-        <main>
-            <div class="content">
-                <section id="intro">
-                    <h2>トロの魅力</h2>
-                    <p>マグロのトロは、多くの寿司愛好家に人気の高いネタです。上の画像に見られるように、大トロの鮮やかなピンク色と、脂の白い筋が入った美しい大理石のような外観は、その魅力を視覚的に物語っています。この濃厚な味わい、独特の食感、美しい見た目が多くの人々を魅了し続けています。</p>
-                </section>
-                
-                <section id="features">
-                    <h2>トロの特徴</h2>
-                    <ul class="feature-list">
-                        <li><strong>濃厚な味わい：</strong>画像から伝わる脂の艶が、その濃厚さを如実に物語っています。脂肪分が多く、口の中でとろけるような濃厚さが特徴です。</li>
-                        <li><strong>独特の食感：</strong>画像の切り身の質感からも、その柔らかさが想像できます。やわらかく滑らかな食感が、他の寿司ネタとは一線を画しています。</li>
-                        <li><strong>美しい見た目：</strong>鮮やかなピンク色と、脂の白い筋が入った大理石のような外観が食欲をそそります。まさに、上の画像が体現しているトロの美しさです。</li>
-                    </ul>
-                </section>
-                
-                <section id="rarity">
-                    <h2>トロの希少性</h2>
-                    <p>マグロの中でもトロは限られた部位からしか取れないため、貴重とされています。画像に見られる上質な大トロの切り身は、その希少価値を視覚的に表現しています。この希少性が、トロの価値をさらに高めているのです。</p>
-                </section>
-                
-                <section id="seasons">
-                    <h2>季節とトロ</h2>
-                    <p>特に冬のトロは脂がのって美味しいとされ、季節の味覚としても楽しまれます。画像のトロは、まさに旬の時期の最高品質を示しています。季節によって変化するトロの味わいは、日本の食文化の奥深さを感じさせます。</p>
-                </section>
-                
-                <section id="variety">
-                    <h2>トロの多様性</h2>
-                    <ul class="feature-list">
-                        <li><strong>大トロ：</strong>最も脂がのった最高級部位。画像のトロは、その艶やかさと脂の入り具合から、まさに大トロそのものです。</li>
-                        <li><strong>中トロ：</strong>程よく脂がのった部位。大トロほどではありませんが、十分な旨味と脂の甘みを楽しめます。</li>
-                        <li><strong>炙りトロ：</strong>表面を軽く炙って香ばしさを加えたもの。香ばしさと脂の甘みのハーモニーを楽しめます。</li>
-                    </ul>
-                    <p>これらの多様な楽しみ方が、トロの魅力をさらに引き立てています。画像のトロは、その中でも最高級の大トロを示しており、トロの魅力を最大限に表現しています。</p>
-                </section>
+        <section id="intro">
+            <h2>トロの魅力</h2>
+            <p>マグロのトロは、多くの寿司愛好家に人気の高いネタです。その濃厚な味わい、独特の食感、美しい見た目が多くの人々を魅了し続けています。</p>
+            <div class="image-container">
+                <img src="https://gourmet.cmosite.com/wp-content/uploads/sites/398/2021/04/test-8.jpg" alt="マグロのトロの寿司">
+                <p>鮮やかなピンク色と艶やかな質感は、トロの美味しさを視覚的に物語っています。</p>
             </div>
-            
-            <div class="sidebar">
-                <h2>トロの豆知識</h2>
-                <p>トロという言葉は、「とろける」という日本語に由来していると言われています。画像のトロの質感を見ると、まさにその名の通りだと感じられます。</p>
-                <h2>おすすめの食べ方</h2>
-                <p>トロは、醤油を少量つけて食べるのが一般的です。しかし、塩やわさびを少量添えて食べるのも美味しい食べ方の一つです。画像のような高品質の大トロは、その美味しさを最大限に引き出すため、シンプルな食べ方がおすすめです。素材の味わいを十分に堪能できるでしょう。</p>
+        </section>
+        
+        <section id="features">
+            <h2>トロの特徴</h2>
+            <ul class="feature-list">
+                <li><strong>濃厚な味わい：</strong>脂肪分が多く、口の中でとろけるような濃厚さが特徴です。</li>
+                <li><strong>独特の食感：</strong>やわらかく滑らかな食感が、他の寿司ネタとは一線を画しています。</li>
+                <li><strong>美しい見た目：</strong>鮮やかなピンク色と、脂の白い筋が入った大理石のような外観が食欲をそそります。</li>
+            </ul>
+            <div class="image-container">
+                <img src="https://i.pinimg.com/736x/04/f5/e8/04f5e8b049845c640527ae635f89cb1d.jpg" alt="トロの断面">
+                <p>トロの断面に見られる美しい霜降りは、その濃厚な味わいを予感させます。</p>
             </div>
-        </main>
+        </section>
+        
+        <section id="experience">
+            <h2>食べた人の感想</h2>
+            <p>「口に入れた瞬間、とろけるような食感と濃厚な旨味が広がり、言葉を失いました。まるで舌の上で踊っているかのような、贅沢な味わいでした。」 - 寿司愛好家 田中さん</p>
+            <p>「一度食べたら忘れられない味です。他の寿司ネタとは比較にならないほどの満足感がありました。」 - グルメライター 佐藤さん</p>
+            <div class="image-container">
+                <img src="https://d35omnrtvqomev.cloudfront.net/photo/article/article_part/image_path_1/426186/44910945f67578b3fac23387051647.jpg" alt="トロを食べる人">
+                <p>トロを口にした瞬間の幸せそうな表情が、その美味しさを物語っています。</p>
+            </div>
+        </section>
+
+        <section id="fishing-ports">
+            <h2>有名な漁港</h2>
+            <p>日本国内では、以下の漁港がマグロの水揚げで有名です：</p>
+            <ul class="feature-list">
+                <li>三陸沖（岩手県大船渡市）</li>
+                <li>焼津港（静岡県焼津市）</li>
+                <li>気仙沼港（宮城県気仙沼市）</li>
+                <li>那智勝浦港（和歌山県那智勝浦町）</li>
+            </ul>
+            <div class="image-container">
+                <img src="https://staticx.antenna.jp/article_images/23048699_wide_39ab0942-d33d-4cfc-90f7-8bd8295fda64_.jpeg" alt="寿司職人">
+                <p>熟練の寿司職人たちが、各地の漁港から届く新鮮なマグロを巧みな技で寿司に仕立て上げています。</p>
+            </div>
+        </section>
+
+        <section id="issues">
+            <h2>資源問題</h2>
+            <p>近年、中国を含む複数の国による乱獲により、マグロの漁獲量に深刻な影響が出ています。国際的な規制強化が求められていますが、違法操業の取り締まりは困難を極めています。持続可能な漁業の実現に向けて、国際社会全体での取り組みが急務となっています。</p>
+            <div class="image-container">
+                <img src="https://www.newsweekjapan.jp/stories/assets_c/2020/09/newsweek_20200911_154437-thumb-720x477-214297.jpg" alt="マグロ漁の様子">
+                <p>マグロ漁の様子。持続可能な漁業のために、適切な管理と規制が必要です。</p>
+            </div>
+        </section>
+
+        <section id="trend">
+            <h2>トレンド：港区女子とトロ</h2>
+            <p>近年、いわゆる「港区女子」の間でトロを含む高級寿司が人気です。しかし、中には寿司への理解やリスペクトが低く、SNSへの投稿目的で来店する人も。本来の寿司文化の理解と尊重が求められています。</p>
+            <div class="image-container">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiurFW0O_KsGY7c8Z0anTL9qz-5Vfst-LlIQ&s" alt="港区女子">
+                <p>SNS映えを重視する傾向が見られますが、寿司本来の味わいや文化的価値にも目を向けることが大切です。</p>
+            </div>
+        </section>
         
         <footer>
             <p>&copy; 2024 マグロのトロ：至高の寿司ネタ. All rights reserved.</p>
